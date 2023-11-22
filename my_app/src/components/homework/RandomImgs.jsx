@@ -1,29 +1,33 @@
-// import React from "react";
-// import { useState } from "react";
+import React from 'react'
+import  './random-imgs.css'
+import { useState } from 'react'
 
-// const RandomImgs = () => {
-//   const [x, setX] = useState(0);
-//   const [y, setY] = useState(0);
+const RandomImgs = () => {
+  let [dog, setDog] = useState(
+    "https://images.dog.ceo/breeds/poodle-toy/n02113624_619.jpg"
+  );
+const getRandomDog=()=>{
+ fetch("https://dog.ceo/api/breeds/image/random")
+       .then((response) => response.json())
+       .then((data) => setDog(data.message))
+}
 
-//   const setRandom = () => {
-//     let x = Math.floor(Math.random() * window.innerWidth);
-//     let y = Math.floor(Math.random() * window.innerHeight);
-//     setX(x);
-//     setY(y);
-//   };
+  return (
+    <>
+      <div className="random-dog">
+       
+       <h2>This is a random dog</h2>
+       <img src={dog} alt={dog} />
+       
 
-//   return (
-//     <>
-//       <button onClick={setRandom}>Generate random image</button>
+       <button onClick={()=>getRandomDog()}>Generate random dog</button>
 
-//       {x !== 0 && y !== 0 && (
-//         <img
-//           src="https://www.placecage.com/gif/200/200"
-//           style={{ position: "fixed", top: x, left: y }}
-//         />
-//       )}
-//     </>
-//   );
-// };
 
-// export default RandomImgs;
+
+
+      </div>
+    </>
+  );
+}
+
+export default RandomImgs

@@ -19,14 +19,14 @@ const Modal = () => {
   return (
     <>
       <button onClickCapture={toggleModal} className="btn-modal">
-        open
+        open modal
       </button>
 
       {modal&&(
           <div className="modal">
         <div className="overlay">
           <div className="modal-content">
-            <h2>Hello World</h2>
+            <h2>This is modal</h2>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti
               error optio omnis voluptas voluptatum odio voluptatem molestias
