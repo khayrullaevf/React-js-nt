@@ -1,13 +1,13 @@
+import { Fragment } from "react";
+import Homepage from "./pages/Homepage";
 
-import './App.css';
-import HomePage from './components/HomePage.jsx';
 
 
 function App() {
   return (
-    <div className="App">
-    <HomePage/>
-    </div>
+    <Fragment>
+      <Homepage/>
+    </Fragment>
   );
 }
 
