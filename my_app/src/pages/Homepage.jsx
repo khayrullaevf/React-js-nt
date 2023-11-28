@@ -34,7 +34,7 @@ const Homepage = () => {
       let newTodos;
       if (selected===null) {
         //add todo
-        newTodos = [todo, ...todos];
+        newTodos = [...todos,todo];
       }else{
         //edit todo
         newTodos=todos.map(element=>element.id===selected?{...element,title,time}:element);
