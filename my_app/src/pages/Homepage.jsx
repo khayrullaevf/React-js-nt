@@ -1,12 +1,134 @@
-
-
-
-
+import { useRef, useState } from "react";
+import Tab from "react-bootstrap/Tab";
+import Tabs from "react-bootstrap/Tabs";
+import TodoItem from "../components/TodoItem";
 
 const Homepage = () => {
-  return (
-    <div>Homepage</div>
-  )
-}
+  const todoinputRef = useRef();
+  const timeinputRef = useRef();
 
-export default Homepage
+  const [todos, setTodos] = useState([
+    { id: "1", title: "Playing football", time: "14:00", done: true },
+    { id: "2", title: "Reading books", time: "16:00", done: false },
+    { id: "3", title: "Doing sports", time: "18:00", done: false },
+    { id: "4", title: "working", time: "08:00", done: true },
+    { id: "5", title: "sleeping", time: "23:00", done: true },
+  ]);
+  const [selected,setSelected]=useState(null)
+
+  const submit = (e) => {
+    e.preventDefault();
+    
+
+    const title = todoinputRef.current.value.trim();
+    const time = timeinputRef.current.value.trim();
+
+    if(title&&time){
+      const todo = {
+        title,
+        time,
+        done: false,
+      };
+      let newTodos;
+      if (selected===null) {
+        //add todo
+        newTodos = [todo, ...todos];
+      }else{
+        //edit todo
+        newTodos=todos.map(element=>element.id===selected?{...element,title,time}:element);
+        setSelected(null)
+      }
+
+       setTodos(newTodos);
+
+       e.target.reset();
+
+      
+    }else{
+      window.alert('Please fill!')
+    }
+
+    
+  };
+  
+  const doneTodo=(id)=>{
+    const newTodos=todos.map(todo=>todo.id===id?{...todo,done:true}:todo);
+    setTodos(newTodos)
+
+  }
+
+  const deleteTodo=(id)=>{
+   const newTodos=todos.filter((todo)=>todo.id!==id)
+   setTodos(newTodos)
+  }
+
+  const editTodo=(id)=>{
+   const {title,time}=todos.find((todo)=>todo.id===id);
+    todoinputRef.current.value=title;
+    timeinputRef.current.value=time;
+    setSelected(id)
+  }
+
+  const mappingTodos = todos.map((todo, index) => (
+    <TodoItem order={index + 1} key={index} {...todo} doneTodo={doneTodo} deleteTodo={deleteTodo} editTodo={editTodo}/>
+  ));
+
+  const doneTodos = todos
+    .filter((todo) => todo.done)
+    .map((todo, index) => (
+      <TodoItem
+        order={index + 1}
+        key={index}
+        {...todo}
+        doneTodo={doneTodo}
+        deleteTodo={deleteTodo}
+        editTodo={editTodo}
+      />
+    ));
+  const undoneTodos = todos
+    .filter((todo) => !todo.done)
+    .map((todo, index) => (
+      <TodoItem
+        order={index + 1}
+        key={index}
+        {...todo}
+        doneTodo={doneTodo}
+        deleteTodo={deleteTodo}
+        editTodo={editTodo}
+      />
+    ));
+
+  return (
+    <section>
+      <div className="container">
+        <h1 className="text-center my-3 ">TODO PROJECT</h1>
+        <form onSubmit={submit} className="d-flex mb-3 gap-3">
+          <input ref={todoinputRef} type="text" className="form-control flex-grow-2 " />
+          <input ref={timeinputRef} type="time" className="form-control" />
+          <button className="btn btn-success">{selected===null?"Add":"Save"}</button>
+        </form>
+
+        <Tabs
+          variant="pills"
+          defaultActiveKey="all"
+          transition={false}
+          id="todo"
+          className="mb-3"
+          justify
+        >
+          <Tab eventKey="all" title={`All todos (${mappingTodos.length})`}>
+            {mappingTodos}
+          </Tab>
+          <Tab eventKey="undone" title={`Undone todos (${undoneTodos.length})`}>
+            {undoneTodos}
+          </Tab>
+          <Tab eventKey="done" title={`Done todos (${doneTodos.length})`}>
+            {doneTodos}
+          </Tab>
+        </Tabs>
+      </div>
+    </section>
+  );
+};
+
+export default Homepage;
