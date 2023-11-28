@@ -26,6 +26,7 @@ const Homepage = () => {
 
     if(title&&time){
       const todo = {
+        id: String(Date.now()),
         title,
         time,
         done: false,
@@ -45,10 +46,7 @@ const Homepage = () => {
        localStorage.setItem('todos',JSON.stringify(newTodos))
 
 
-
-
-
-       todoinputRef.current.focus()
+  todoinputRef.current.focus()
        e.target.reset();
 
       
