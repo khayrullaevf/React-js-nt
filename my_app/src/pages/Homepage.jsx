@@ -4,16 +4,17 @@ import Tabs from "react-bootstrap/Tabs";
 import TodoItem from "../components/TodoItem";
 
 const Homepage = () => {
+
+  const todosJSON=localStorage.getItem('todos')
+
+
+
+
+
   const todoinputRef = useRef();
   const timeinputRef = useRef();
 
-  const [todos, setTodos] = useState([
-    { id: "1", title: "Playing football", time: "14:00", done: true },
-    { id: "2", title: "Reading books", time: "16:00", done: false },
-    { id: "3", title: "Doing sports", time: "18:00", done: false },
-    { id: "4", title: "working", time: "08:00", done: true },
-    { id: "5", title: "sleeping", time: "23:00", done: true },
-  ]);
+  const [todos, setTodos] = useState(JSON.parse(todosJSON)||[]);
   const [selected,setSelected]=useState(null)
 
   const submit = (e) => {
@@ -41,6 +42,13 @@ const Homepage = () => {
 
        setTodos(newTodos);
 
+       localStorage.setItem('todos',JSON.stringify(newTodos))
+
+
+
+
+
+       todoinputRef.current.focus()
        e.target.reset();
 
       
