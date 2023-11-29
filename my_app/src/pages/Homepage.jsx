@@ -1,11 +1,8 @@
-import React from 'react'
-import { Fragment } from 'react'
 
-export const Homepage = () => {
+const Homepage = () => {
   return (
-    <Fragment>
-      <h1 className="text-center">hello world</h1>
-      <h1 className="text-center">hello world</h1>
-    </Fragment>
-  );
+    <div>Homepage</div>
+  )
 }
+
+export default Homepage
