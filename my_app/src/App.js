@@ -1,12 +1,14 @@
-import { Fragment } from "react";
-import Homepage from "./pages/Homepage";
+import { Fragment, } from "react";
+
+import 'bootstrap/dist/css/bootstrap.css'
+import Router from "./components/Routes/Router";
 
 
 
 function App() {
   return (
     <Fragment>
-      <Homepage/>
+      <Router />
     </Fragment>
   );
 }
