@@ -1,12 +1,11 @@
 import { Fragment } from "react";
-import Homepage from "./pages/Homepage";
 
 
 
 function App() {
   return (
     <Fragment>
-      <Homepage/>
+    <h1>Lesson-5 homework</h1>
     </Fragment>
   );
 }
