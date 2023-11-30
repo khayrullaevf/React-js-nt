@@ -1,12 +1,17 @@
 import { Fragment } from "react";
-import Homepage from "./pages/Homepage";
+  import "bootstrap/dist/css/bootstrap.css"
+import ComponentMain from "./components/ComponentMain";
+import { ThemeProvider } from "./components/ThemeContext";
 
 
 
 function App() {
   return (
     <Fragment>
-      <Homepage/>
+      
+      <ThemeProvider>
+        <ComponentMain/>
+      </ThemeProvider>
     </Fragment>
   );
 }
