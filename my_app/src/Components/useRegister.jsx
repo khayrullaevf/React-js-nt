@@ -4,6 +4,13 @@ import { useNavigate } from "react-router-dom";
 const useRegister = () => {
 
     const  navigate=useNavigate()
+
+
+
+
+
+
+
   const [firstName, setFirstname] = useState("");
   const [lastName, setLastname] = useState("");
   const [email, setEmail] = useState("");
@@ -98,6 +105,7 @@ const useRegister = () => {
     },
     handleSubmit
   };
+  
 };
 
 export default useRegister;

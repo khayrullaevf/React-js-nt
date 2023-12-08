@@ -41,7 +41,7 @@ const Register = () => {
         type="text"
         onChange={handleLastnameChange}
         value={lastName}
-        placeholder="Enter your  lastname"
+        placeholder="Enter your lastname"
       />
       {error.lastName && <p>{error.lastName}</p>}
       <input
